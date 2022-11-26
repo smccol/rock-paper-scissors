@@ -1,10 +1,11 @@
-var words = ['rock', 'paper', 'scissors' ];
+let words = ['rock', 'paper', 'scissors' ];
 function getComputerChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+let result = '';
+
 function playRound(playerSelection, computerSelection) {
-    let result = '';
     if (playerSelection.toLowerCase() == computerSelection) {
         result = ("It's a tie!")
     } else if ((playerSelection.toLowerCase() === "rock") && (computerSelection === "paper")) {
@@ -23,25 +24,27 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
-const computerSelection = getComputerChoice(words);
-console.log(computerSelection);
-const playerSelection = "RoCk";
-console.log(playerSelection);
-
-console.log(playRound(playerSelection, computerSelection));
 
 function game() {
-    let result = playRound(playerSelection, computerSelection)
     let computerScore = 0;
     let playerScore = 0;
     for (let i = 0; i < 5; i++) {
+        let computerSelection = getComputerChoice(words);
+        let playerSelection = prompt('Type: Rock, Paper, or Scissors')
         playRound(playerSelection, computerSelection);
+        console.log(playRound(playerSelection, computerSelection)); {
             if (result.includes("Win")) {
-                playerScore++;
+                ++playerScore;
             } else if (result.includes("Lose")) {
-                computerScore++;
+                ++computerScore;
         }
     }
+    }
+    if (playerScore > computerScore) {
+        return "You win!";
+    } else if (playerScore < computerScore) {
+        return "You lose!";
+    } else return "Draw!";
 }
 
 console.log(game());
